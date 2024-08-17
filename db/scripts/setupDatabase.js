@@ -1,6 +1,4 @@
 import sequelize from '../sequelize.js';
-import User from "../models/User.js";
-import Contact from "../models/Contact.js";
 import seedContacts from './contacts/seedContacts.js';
 import seedUsers from "./users/seedUsers.js";
 
@@ -9,14 +7,13 @@ const setupDatabase = async () => {
         await sequelize.authenticate();
         console.log('Database connection successful');
 
-    
-        await User.sync({ force: true }); 
-        await Contact.sync({ force: true }); 
-
         await sequelize.sync({ force: true });
 
         await seedUsers();
+        console.log('Users have been seeded successfully.');
+
         await seedContacts();
+        console.log('Contacts have been seeded successfully.');
 
         console.log('Database setup and seeding complete.');
     } catch (error) {
@@ -26,5 +23,6 @@ const setupDatabase = async () => {
 };
 
 export default setupDatabase;
+
 
 
