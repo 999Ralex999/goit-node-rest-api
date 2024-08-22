@@ -1,8 +1,7 @@
 import {DataTypes} from 'sequelize';
 
 import sequelize from '../sequelize.js';
-import { emailRegex, UserSubscriptionConstants } from "../../constants/userConstants.js";
-
+import {emailRegex, UserSubscriptionConstants} from "../../constants/userConstants.js";
 
 const User = sequelize.define(
     'user', {
@@ -32,6 +31,7 @@ const User = sequelize.define(
             type: DataTypes.STRING,
             defaultValue: null,
         },
+        avatarURL: DataTypes.STRING,
     },
 );
 

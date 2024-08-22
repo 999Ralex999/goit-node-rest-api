@@ -5,11 +5,11 @@ import passwordManager from "../../../helpers/passwordManager.js";
 const seedUsers = async () => {
     const usersData = [
         {
-            password: passwordManager.hashPassword('password@123'),
+            password: passwordManager.hashPassword('Bady1234!'),
             email: 'user1@example.com',
         },
         {
-            password: passwordManager.hashPassword('password@456'),
+            password: passwordManager.hashPassword('StrongPass456!'),
             email: 'user2@example.com',
             subscription: UserSubscriptionConstants.PRO,
         }
