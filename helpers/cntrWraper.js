@@ -1,9 +1,9 @@
 export function cntrWraper(controller) {
   return async (req, res, next) => {
-    try {
-      await controller(req, res, next);
-    } catch (error) {
-      next(error);
-    }
+      try {
+          await controller(req, res, next);
+      } catch (error) {
+          next(error);
+      }
   };
 }

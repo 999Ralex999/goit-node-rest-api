@@ -12,7 +12,7 @@ export const sighUpSchema = Joi.object({
         'string.empty': 'Password is required.',
         'any.required': 'Password is required.',
     }),
-});
+})
 
 export const updateSubscriptionSchema = Joi.object({
     subscription: Joi.string().valid(...Object.values(UserSubscriptionConstants)).required().messages({

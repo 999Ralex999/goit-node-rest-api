@@ -1,16 +1,20 @@
+import { url as gravatarUrl } from 'gravatar';
+
 import passwordManager from '../helpers/passwordManager.js';
 import User from '../db/models/User.js';
 import HttpError from '../helpers/HttpError.js';
 import tokenManager from '../helpers/tokenManager.js';
 
 export const createUser = async data => {
-    const { email, password: plainPassword } = data;
+    const {email, password: plainPassword} = data;
 
     const password = passwordManager.hashPassword(plainPassword);
+    const avatarURL = gravatarUrl(email,{protocol: 'http', s: '100'});
 
     return User.create({
         email,
         password,
+        avatarURL,
     });
 };
 
@@ -35,11 +39,3 @@ export const sighIn = async data => {
 };
 
 export const updateUser = async (user, data) => user.update(data);
-
-
-export default {
-    createUser,
-    getUser,
-    sighIn,
-    updateUser,
-};
