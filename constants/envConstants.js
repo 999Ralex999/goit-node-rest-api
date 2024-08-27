@@ -4,6 +4,7 @@ dotenv.config();
 
 const envConstants = process.env;
 
+export const HOST = envConstants.HOST || "http://localhost";
 export const PORT = envConstants.PORT || 3000;
 export const DATABASE_NAME = envConstants.DATABASE_NAME;
 export const DATABASE_USER = envConstants.DATABASE_USER;
@@ -12,3 +13,5 @@ export const DATABASE_HOST = envConstants.DATABASE_HOST;
 export const DATABASE_PORT = envConstants.DATABASE_PORT;
 export const DATABASE_DIALECT = envConstants.DATABASE_DIALECT;
 export const JWT_SECRET = envConstants.JWT_SECRET;
+export const UKR_NET_EMAIL = envConstants.UKR_NET_EMAIL;
+export const UKR_NET_PASSWORD = envConstants.UKR_NET_PASSWORD;
