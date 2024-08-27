@@ -1,23 +1,49 @@
-import express from 'express';
-import validateBody from '../helpers/validateBody.js';
-import authenticate from '../middlware/authenticate.js';
+import express from "express";
+import validateBody from "../helpers/validateBody.js";
+import authenticate from "../middlware/authenticate.js";
 import upload from "../middlware/upload.js";
 
-import authControllers from '../controllers/authControllers.js';
-import { sighUpSchema, updateSubscriptionSchema } from '../schemas/authSchemas.js';
+import authControllers from "../controllers/authControllers.js";
+import {
+  resendVerificationEmailSchema,
+  sighUpSchema,
+  updateSubscriptionSchema,
+} from "../schemas/authSchemas.js";
 
 const authRouter = express.Router();
 
-authRouter.post('/register', validateBody(sighUpSchema), authControllers.sighUp);
+authRouter.post(
+  "/register",
+  validateBody(sighUpSchema),
+  authControllers.sighUp
+);
 
-authRouter.post('/login', authControllers.sighIn);
+authRouter.post("/login", authControllers.sighIn);
 
-authRouter.post('/logout', authenticate, authControllers.logout);
+authRouter.post("/logout", authenticate, authControllers.logout);
 
-authRouter.get('/current', authenticate, authControllers.myProfile);
+authRouter.get("/current", authenticate, authControllers.myProfile);
 
-authRouter.patch('/subscription', authenticate, validateBody(updateSubscriptionSchema), authControllers.changeSubscription);
+authRouter.patch(
+  "/subscription",
+  authenticate,
+  validateBody(updateSubscriptionSchema),
+  authControllers.changeSubscription
+);
 
-authRouter.patch('/avatars', authenticate, upload.single('avatar'), authControllers.updateAvatar);
+authRouter.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  authControllers.updateAvatar
+);
+
+authRouter.get("/verify/:verificationToken", authControllers.verifyEmail);
+
+authRouter.post(
+  "/verify",
+  validateBody(resendVerificationEmailSchema),
+  authControllers.resendVerificationEmail
+);
 
 export default authRouter;
